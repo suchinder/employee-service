@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Employee;
 import com.example.demo.service.EmployeeService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+
 @RestController
+@Api(value="employee service", description="Sample Employee Service")
 public class EmployeeController {
 
 	@Autowired
@@ -22,6 +27,7 @@ public class EmployeeController {
 	@Value("${some.property}")
 	private String prop1;
 	
+	@ApiOperation(value = "View a list of employees", response = List.class)
 	@RequestMapping(value = "employee", method = RequestMethod.GET)
 	public List<Employee> list() {
 		return employeeService.list();
